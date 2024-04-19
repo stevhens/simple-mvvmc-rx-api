@@ -24,6 +24,7 @@
 		7830BDCD2BD2723E00AEC5C4 /* DefaultNetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7830BDCC2BD2723E00AEC5C4 /* DefaultNetworkClient.swift */; };
 		7830BDD02BD272B300AEC5C4 /* ContentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7830BDCF2BD272B300AEC5C4 /* ContentRepository.swift */; };
 		7830BDD22BD272C200AEC5C4 /* DefaultContentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7830BDD12BD272C200AEC5C4 /* DefaultContentRepository.swift */; };
+		7830BDD42BD2735E00AEC5C4 /* JokeListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7830BDD32BD2735E00AEC5C4 /* JokeListViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		7830BDCC2BD2723E00AEC5C4 /* DefaultNetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultNetworkClient.swift; sourceTree = "<group>"; };
 		7830BDCF2BD272B300AEC5C4 /* ContentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentRepository.swift; sourceTree = "<group>"; };
 		7830BDD12BD272C200AEC5C4 /* DefaultContentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultContentRepository.swift; sourceTree = "<group>"; };
+		7830BDD32BD2735E00AEC5C4 /* JokeListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeListViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				7830BDC72BD271B000AEC5C4 /* JokeModel.swift */,
+				7830BDD32BD2735E00AEC5C4 /* JokeListViewModel.swift */,
 			);
 			path = JokeList;
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 				7830BDD22BD272C200AEC5C4 /* DefaultContentRepository.swift in Sources */,
 				782BD6342BD1622C00FE9D41 /* ViewController.swift in Sources */,
 				7830BDD02BD272B300AEC5C4 /* ContentRepository.swift in Sources */,
+				7830BDD42BD2735E00AEC5C4 /* JokeListViewModel.swift in Sources */,
 				782BD61F2BD161AC00FE9D41 /* AppDelegate.swift in Sources */,
 				7830BDC82BD271B000AEC5C4 /* JokeModel.swift in Sources */,
 				7830BDCD2BD2723E00AEC5C4 /* DefaultNetworkClient.swift in Sources */,
