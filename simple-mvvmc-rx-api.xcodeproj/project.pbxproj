@@ -31,6 +31,7 @@
 		7830BDDC2BD2798100AEC5C4 /* JokeListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7830BDDA2BD2798100AEC5C4 /* JokeListCollectionViewCell.xib */; };
 		7830BDDF2BD2800100AEC5C4 /* CGFloatExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7830BDDE2BD2800100AEC5C4 /* CGFloatExtension.swift */; };
 		7830BDE12BD2830200AEC5C4 /* CollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7830BDE02BD2830200AEC5C4 /* CollectionExtension.swift */; };
+		78383EC32BD3EA30003024A8 /* JokeDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78383EC22BD3EA30003024A8 /* JokeDetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		7830BDDA2BD2798100AEC5C4 /* JokeListCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JokeListCollectionViewCell.xib; sourceTree = "<group>"; };
 		7830BDDE2BD2800100AEC5C4 /* CGFloatExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloatExtension.swift; sourceTree = "<group>"; };
 		7830BDE02BD2830200AEC5C4 /* CollectionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionExtension.swift; sourceTree = "<group>"; };
+		78383EC22BD3EA30003024A8 /* JokeDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeDetailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				7830BDC62BD271A800AEC5C4 /* JokeList */,
+				78383EC12BD3EA1F003024A8 /* JokeDetail */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -152,6 +155,14 @@
 				7830BDE02BD2830200AEC5C4 /* CollectionExtension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		78383EC12BD3EA1F003024A8 /* JokeDetail */ = {
+			isa = PBXGroup;
+			children = (
+				78383EC22BD3EA30003024A8 /* JokeDetailViewModel.swift */,
+			);
+			path = JokeDetail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -240,6 +251,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78383EC32BD3EA30003024A8 /* JokeDetailViewModel.swift in Sources */,
 				7830BDD22BD272C200AEC5C4 /* DefaultContentRepository.swift in Sources */,
 				782BD6342BD1622C00FE9D41 /* ViewController.swift in Sources */,
 				7830BDD02BD272B300AEC5C4 /* ContentRepository.swift in Sources */,
