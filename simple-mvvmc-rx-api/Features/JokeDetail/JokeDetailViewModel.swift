@@ -3,14 +3,16 @@ import RxCocoa
 
 class JokeDetailViewModel {
     private let contentRepository: ContentRepository
+    private let coordinator: JokeDetailCoordinator
     private let disposeBag = DisposeBag()
     
     let isLoading = BehaviorRelay<Bool>(value: false)
     let joke = BehaviorSubject<Joke?>(value: nil)
     let error = BehaviorRelay<Error?>(value: nil)
     
-    init(contentRepository: ContentRepository = DefaultContentRepository()) {
+    init(contentRepository: ContentRepository, coordinator: JokeDetailCoordinator) {
         self.contentRepository = contentRepository
+        self.coordinator = coordinator
     }
     
     func fetchJoke(id: Int) {
@@ -29,5 +31,9 @@ class JokeDetailViewModel {
                 strongSelf.isLoading.accept(false)
             })
             .disposed(by: disposeBag)
+    }
+    
+    func dismissPage() {
+        coordinator.dismissPage()
     }
 }

@@ -7,12 +7,13 @@ class JokeDetailViewController: UIViewController {
     @IBOutlet weak var jokePunchlineLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    private let viewModel = JokeDetailViewModel()
+    private var viewModel: JokeDetailViewModel
     private let disposeBag = DisposeBag()
     
     private let jokeID: Int
     
-    init(jokeID: Int) {
+    init(viewModel: JokeDetailViewModel, jokeID: Int) {
+        self.viewModel = viewModel
         self.jokeID = jokeID
         super.init(nibName: nil, bundle: nil)
     }
@@ -30,6 +31,7 @@ class JokeDetailViewController: UIViewController {
 
     private func setupUI() {
         self.navigationItem.title = "Joke Detail"
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonTapped))
     }
     
     private func bindViewModel() {
@@ -63,5 +65,9 @@ class JokeDetailViewController: UIViewController {
                 strongSelf.jokePunchlineLabel.text = joke.punchline
             })
             .disposed(by: disposeBag)
+    }
+    
+    @objc private func backButtonTapped() {
+        viewModel.dismissPage()
     }
 }

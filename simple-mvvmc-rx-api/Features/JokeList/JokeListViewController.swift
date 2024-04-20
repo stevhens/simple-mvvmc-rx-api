@@ -6,8 +6,17 @@ class JokeListViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    private let viewModel = JokeListViewModel()
+    private var viewModel: JokeListViewModel
     private let disposeBag = DisposeBag()
+    
+    init(viewModel: JokeListViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,14 +71,9 @@ class JokeListViewController: UIViewController {
                     let selectedJokeID = try? strongSelf.viewModel.jokeList.value()[safe: indexPath.row]?.id
                 else { return }
 
-                strongSelf.showJokeDetail(id: selectedJokeID)
+                strongSelf.viewModel.showJokeDetail(jokeID: selectedJokeID)
             })
             .disposed(by: disposeBag)
-    }
-    
-    private func showJokeDetail(id: Int) {
-        let jokeDetailViewController = JokeDetailViewController(jokeID: id)
-        navigationController?.pushViewController(jokeDetailViewController, animated: true)
     }
 }
 
