@@ -46,6 +46,7 @@ class JokeDetailViewController: UIViewController {
             .subscribe(onNext: { [weak self] error in
                 guard let strongSelf = self else { return }
                 if let error = error {
+                    strongSelf.showErrorAlert(message: error.localizedDescription)
                 }
             })
             .disposed(by: disposeBag)

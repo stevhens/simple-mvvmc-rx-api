@@ -34,6 +34,7 @@
 		78383EC32BD3EA30003024A8 /* JokeDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78383EC22BD3EA30003024A8 /* JokeDetailViewModel.swift */; };
 		78383EC62BD3EB5A003024A8 /* JokeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78383EC42BD3EB5A003024A8 /* JokeDetailViewController.swift */; };
 		78383EC72BD3EB5A003024A8 /* JokeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78383EC52BD3EB5A003024A8 /* JokeDetailViewController.xib */; };
+		78383ECD2BD40043003024A8 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78383ECC2BD40043003024A8 /* UIViewControllerExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +60,7 @@
 		78383EC22BD3EA30003024A8 /* JokeDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeDetailViewModel.swift; sourceTree = "<group>"; };
 		78383EC42BD3EB5A003024A8 /* JokeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeDetailViewController.swift; sourceTree = "<group>"; };
 		78383EC52BD3EB5A003024A8 /* JokeDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JokeDetailViewController.xib; sourceTree = "<group>"; };
+		78383ECC2BD40043003024A8 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				7830BDDE2BD2800100AEC5C4 /* CGFloatExtension.swift */,
+				78383ECC2BD40043003024A8 /* UIViewControllerExtension.swift */,
 				7830BDE02BD2830200AEC5C4 /* CollectionExtension.swift */,
 			);
 			path = Extensions;
@@ -260,6 +263,7 @@
 			files = (
 				78383EC32BD3EA30003024A8 /* JokeDetailViewModel.swift in Sources */,
 				7830BDD22BD272C200AEC5C4 /* DefaultContentRepository.swift in Sources */,
+				78383ECD2BD40043003024A8 /* UIViewControllerExtension.swift in Sources */,
 				782BD6342BD1622C00FE9D41 /* ViewController.swift in Sources */,
 				7830BDD02BD272B300AEC5C4 /* ContentRepository.swift in Sources */,
 				7830BDD72BD275DB00AEC5C4 /* JokeListViewController.swift in Sources */,
