@@ -38,6 +38,9 @@
 		78383ECF2BD401A1003024A8 /* JokeListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78383ECE2BD401A1003024A8 /* JokeListCoordinator.swift */; };
 		78383ED12BD40254003024A8 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78383ED02BD40254003024A8 /* AppCoordinator.swift */; };
 		78383ED32BD403EC003024A8 /* JokeDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78383ED22BD403EB003024A8 /* JokeDetailCoordinator.swift */; };
+		78383ED62BD40C38003024A8 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 78383ED52BD40C38003024A8 /* Swinject */; };
+		78383ED82BD40C38003024A8 /* Swinject-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 78383ED72BD40C38003024A8 /* Swinject-Dynamic */; };
+		78383EDB2BD40C4B003024A8 /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78383EDA2BD40C4B003024A8 /* DependencyContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +70,7 @@
 		78383ECE2BD401A1003024A8 /* JokeListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeListCoordinator.swift; sourceTree = "<group>"; };
 		78383ED02BD40254003024A8 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		78383ED22BD403EB003024A8 /* JokeDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeDetailCoordinator.swift; sourceTree = "<group>"; };
+		78383EDA2BD40C4B003024A8 /* DependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,7 +84,9 @@
 				7830BDC22BD270B800AEC5C4 /* Alamofire in Frameworks */,
 				7830BDC42BD270B800AEC5C4 /* AlamofireDynamic in Frameworks */,
 				7830BDB72BD2705A00AEC5C4 /* RxBlocking in Frameworks */,
+				78383ED82BD40C38003024A8 /* Swinject-Dynamic in Frameworks */,
 				7830BDB92BD2705A00AEC5C4 /* RxBlocking-Dynamic in Frameworks */,
+				78383ED62BD40C38003024A8 /* Swinject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,6 +114,7 @@
 			children = (
 				782BD61E2BD161AC00FE9D41 /* AppDelegate.swift */,
 				78383ED02BD40254003024A8 /* AppCoordinator.swift */,
+				78383ED92BD40C3F003024A8 /* Common */,
 				7830BDDD2BD27FF300AEC5C4 /* Extensions */,
 				7830BDC92BD271F000AEC5C4 /* NetworkClient */,
 				7830BDCE2BD2729E00AEC5C4 /* Repository */,
@@ -183,6 +190,14 @@
 			path = JokeDetail;
 			sourceTree = "<group>";
 		};
+		78383ED92BD40C3F003024A8 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				78383EDA2BD40C4B003024A8 /* DependencyContainer.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -207,6 +222,8 @@
 				7830BDBE2BD2705A00AEC5C4 /* RxRelay */,
 				7830BDC12BD270B800AEC5C4 /* Alamofire */,
 				7830BDC32BD270B800AEC5C4 /* AlamofireDynamic */,
+				78383ED52BD40C38003024A8 /* Swinject */,
+				78383ED72BD40C38003024A8 /* Swinject-Dynamic */,
 			);
 			productName = "simple-mvvmc-rx-api";
 			productReference = 782BD61B2BD161AC00FE9D41 /* simple-mvvmc-rx-api.app */;
@@ -239,6 +256,7 @@
 			packageReferences = (
 				7830BDB52BD2705A00AEC5C4 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				7830BDC02BD270B800AEC5C4 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				78383ED42BD40C38003024A8 /* XCRemoteSwiftPackageReference "Swinject" */,
 			);
 			productRefGroup = 782BD61C2BD161AC00FE9D41 /* Products */;
 			projectDirPath = "";
@@ -272,6 +290,7 @@
 			files = (
 				78383EC32BD3EA30003024A8 /* JokeDetailViewModel.swift in Sources */,
 				7830BDD22BD272C200AEC5C4 /* DefaultContentRepository.swift in Sources */,
+				78383EDB2BD40C4B003024A8 /* DependencyContainer.swift in Sources */,
 				78383ED12BD40254003024A8 /* AppCoordinator.swift in Sources */,
 				78383ECD2BD40043003024A8 /* UIViewControllerExtension.swift in Sources */,
 				782BD6342BD1622C00FE9D41 /* ViewController.swift in Sources */,
@@ -518,6 +537,14 @@
 				version = 5.9.1;
 			};
 		};
+		78383ED42BD40C38003024A8 /* XCRemoteSwiftPackageReference "Swinject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Swinject/Swinject";
+			requirement = {
+				kind = exactVersion;
+				version = 2.8.6;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -555,6 +582,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7830BDC02BD270B800AEC5C4 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = AlamofireDynamic;
+		};
+		78383ED52BD40C38003024A8 /* Swinject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 78383ED42BD40C38003024A8 /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = Swinject;
+		};
+		78383ED72BD40C38003024A8 /* Swinject-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 78383ED42BD40C38003024A8 /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = "Swinject-Dynamic";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

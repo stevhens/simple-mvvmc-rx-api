@@ -17,7 +17,7 @@ class JokeDetailCoordinator: Coordinator {
     }
     
     func start() {
-        let contentRepository = DefaultContentRepository()
+        let contentRepository = Dependency.container.resolve(DefaultContentRepository.self)!
         let viewModel = JokeDetailViewModel(contentRepository: contentRepository, coordinator: self)
         let viewController = JokeDetailViewController(viewModel: viewModel, jokeID: jokeID)
         navigationController.pushViewController(viewController, animated: true)

@@ -9,7 +9,7 @@ class JokeListCoordinator: Coordinator {
     }
     
     func start() {
-        let contentRepository = DefaultContentRepository()
+        let contentRepository = Dependency.container.resolve(DefaultContentRepository.self)!
         let viewModel = JokeListViewModel(contentRepository: contentRepository, coordinator: self)
         let viewController = JokeListViewController(viewModel: viewModel)
         navigationController.pushViewController(viewController, animated: true)
