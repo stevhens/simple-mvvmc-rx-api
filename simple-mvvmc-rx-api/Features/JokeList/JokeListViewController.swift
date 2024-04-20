@@ -28,9 +28,7 @@ class JokeListViewController: UIViewController {
     private func setupUI() {
         self.navigationItem.title = "Jokes"
         collectionView.delegate = self
-        collectionView.register(
-            UINib(nibName: "JokeListCollectionViewCell", bundle: nil),
-            forCellWithReuseIdentifier: "JokeListCell")
+        collectionView.registerCells(withIdentifiers: JokeListItemCell.className)
     }
     
     private func bindViewModel() {
@@ -55,8 +53,8 @@ class JokeListViewController: UIViewController {
         viewModel.jokeList
             .observe(on: MainScheduler.instance)
             .bind(to: collectionView.rx.items(
-                cellIdentifier: "JokeListCell",
-                cellType: JokeListCollectionViewCell.self)
+                cellIdentifier: JokeListItemCell.className,
+                cellType: JokeListItemCell.self)
             ) { index, item, cell in
                 cell.jokeSetupLabel.text = item.setup
                 cell.jokePunchlineLabel.text = item.punchline
@@ -86,7 +84,7 @@ extension JokeListViewController: UICollectionViewDelegateFlowLayout {
         guard let joke = try? viewModel.jokeList.value()[safe: indexPath.item] else {
             return .zero
         }
-        return JokeListCollectionViewCell.getSize(
+        return JokeListItemCell.getSize(
             jokeSetupText: joke.setup,
             jokePunchlineText: joke.punchline
         )

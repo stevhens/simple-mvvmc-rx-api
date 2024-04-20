@@ -1,6 +1,6 @@
 import UIKit
 
-class JokeListCollectionViewCell: UICollectionViewCell {
+class JokeListItemCell: UICollectionViewCell {
     static func getSize(jokeSetupText: String, jokePunchlineText: String) -> CGSize {
         let screenWidth = UIScreen.main.bounds.size.width
         let jokeSetupHeight = CGFloat.getTextHeight(
