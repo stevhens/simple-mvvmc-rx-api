@@ -56,9 +56,19 @@ class JokeListViewController: UIViewController {
         collectionView.rx.itemSelected
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] indexPath in
-                guard let strongSelf = self else { return }
+                guard
+                    let strongSelf = self,
+                    let selectedJokeID = try? strongSelf.viewModel.jokeList.value()[safe: indexPath.row]?.id
+                else { return }
+
+                strongSelf.showJokeDetail(id: selectedJokeID)
             })
             .disposed(by: disposeBag)
+    }
+    
+    private func showJokeDetail(id: Int) {
+        let jokeDetailViewController = JokeDetailViewController(jokeID: id)
+        navigationController?.pushViewController(jokeDetailViewController, animated: true)
     }
 }
 
