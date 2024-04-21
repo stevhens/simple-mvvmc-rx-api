@@ -67,7 +67,7 @@ class JokeDetailViewController: UIViewController {
             .disposed(by: disposeBag)
     }
     
-    @objc private func backButtonTapped() {
+    @objc func backButtonTapped() {
         viewModel.dismissPage()
     }
 }

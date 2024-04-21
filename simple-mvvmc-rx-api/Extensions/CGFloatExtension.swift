@@ -1,6 +1,6 @@
 import UIKit
 
-extension CGFloat {
+public extension CGFloat {
     static func getTextHeight(_ text: String, width: CGFloat, margin: CGFloat = 0.0, font: UIFont, line: Int = 0) -> CGFloat {
       guard !text.isEmpty else {
         return 0.0
