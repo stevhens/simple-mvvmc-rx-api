@@ -2,6 +2,7 @@ import XCTest
 import RxSwift
 import Quick
 import Nimble
+import Cuckoo
 @testable import simple_mvvmc_rx_api
 
 class JokeDetailViewModelSpec: QuickSpec {
@@ -33,19 +34,24 @@ class JokeDetailViewModelSpec: QuickSpec {
                         .subscribe(onNext: { isLoading in
                             loadingHistory.append(isLoading)
                         })
+                    
+                    let joke = Joke(id: 101, type: "", setup: "", punchline: "")
+                    stub(contentRepository) { mock in
+                        when(mock.fetchJoke(id: any())).thenReturn(Observable.just(joke))
+                    }
 
                     viewModel.fetchJoke(id: 101)
 
                     expect(loadingHistory).toEventually(contain(true))
-
                     expect(loadingHistory).toEventually(contain(false))
-
                     disposable.dispose()
                 }
 
                 it("should fetch joke successfully") {
                     let joke = Joke(id: 101, type: "", setup: "", punchline: "")
-                    contentRepository.jokeToReturn = joke
+                    stub(contentRepository) { mock in
+                        when(mock.fetchJoke(id: any())).thenReturn(Observable.just(joke))
+                    }
 
                     viewModel.fetchJoke(id: 101)
 
@@ -55,7 +61,11 @@ class JokeDetailViewModelSpec: QuickSpec {
 
                 it("should handle error") {
                     let testError = NSError(domain: "TestError", code: 101, userInfo: nil)
-                    contentRepository.errorToReturn = testError
+                    stub(contentRepository) { mock in
+                        when(mock.fetchJoke(id: any())).then { _ in
+                            return Observable.error(testError)
+                        }
+                    }
 
                     viewModel.fetchJoke(id: 101)
 
@@ -66,18 +76,15 @@ class JokeDetailViewModelSpec: QuickSpec {
 
             context("when dismissing page") {
                 it("should call coordinator's dismissPage method") {
+                    stub(coordinator) { mock in
+                        when(mock.dismissPage()).thenDoNothing()
+                    }
+
                     viewModel.dismissPage()
-                    expect(coordinator.dismissPageCalled).to(beTrue())
+                    
+                    verify(coordinator, times(1)).dismissPage()
                 }
             }
         }
-    }
-}
-
-class MockJokeDetailCoordinator: JokeDetailCoordinator {
-    var dismissPageCalled = false
-
-    override func dismissPage() {
-        dismissPageCalled = true
     }
 }

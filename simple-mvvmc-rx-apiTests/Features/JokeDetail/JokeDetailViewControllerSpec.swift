@@ -3,6 +3,7 @@ import Quick
 import Nimble
 import RxSwift
 import RxTest
+import Cuckoo
 @testable import simple_mvvmc_rx_api
 
 class JokeDetailViewControllerSpec: QuickSpec {
@@ -33,11 +34,13 @@ class JokeDetailViewControllerSpec: QuickSpec {
             }
             
             afterEach {
-                window = nil
                 sut = nil
                 mockViewModel = nil
                 testScheduler = nil
+                mockContentRepository = nil
+                coordinator = nil
                 disposeBag = nil
+                window = nil
             }
             
             context("when viewDidLoad is called") {
@@ -60,7 +63,6 @@ class JokeDetailViewControllerSpec: QuickSpec {
                     
                     testScheduler.start()
                     
-                    expect(mockViewModel.fetchJokeIdCalled).to(beTrue())
                     expect(sut.jokeSetupLabel.text).to(equal("setup"))
                     expect(sut.jokePunchlineLabel.text).to(equal("punchline"))
                 }

@@ -2,6 +2,7 @@ import XCTest
 import RxSwift
 import Quick
 import Nimble
+import Cuckoo
 @testable import simple_mvvmc_rx_api
 
 class JokeListViewModelSpec: QuickSpec {
@@ -15,6 +16,10 @@ class JokeListViewModelSpec: QuickSpec {
                 contentRepository = MockContentRepository()
                 coordinator = MockJokeListCoordinator(navigationController: .init())
                 viewModel = JokeListViewModel(contentRepository: contentRepository, coordinator: coordinator)
+                
+                stub(coordinator) { mock in
+                    when(mock.showJokeDetail(jokeID: any())).thenDoNothing()
+                }
             }
 
             afterEach {
@@ -34,12 +39,17 @@ class JokeListViewModelSpec: QuickSpec {
                             loadingHistory.append(isLoading)
                         })
 
+                    let jokes = [
+                        Joke(id: 1, type: "type", setup: "setup", punchline: "punchline"),
+                        Joke(id: 2, type: "type", setup: "setup", punchline: "punchline")
+                    ]
+                    stub(contentRepository) { mock in
+                        when(mock.fetchJokeList()).thenReturn(Observable.just(jokes))
+                    }
                     viewModel.fetchJokeList()
 
                     expect(loadingHistory).toEventually(contain(true))
-
                     expect(loadingHistory).toEventually(contain(false))
-
                     disposable.dispose()
                 }
 
@@ -48,20 +58,27 @@ class JokeListViewModelSpec: QuickSpec {
                         Joke(id: 1, type: "type", setup: "setup", punchline: "punchline"),
                         Joke(id: 2, type: "type", setup: "setup", punchline: "punchline")
                     ]
-                    contentRepository.jokesToReturn = jokes
+                    stub(contentRepository) { mock in
+                        when(mock.fetchJokeList()).thenReturn(Observable.just(jokes))
+                    }
 
                     viewModel.fetchJokeList()
-
+                    verify(contentRepository, times(1)).fetchJokeList()
                     expect(try? viewModel.jokeList.value()).to(equal(jokes))
                     expect(viewModel.error.value).to(beNil())
                 }
 
                 it("should handle error") {
                     let testError = NSError(domain: "TestError", code: 101, userInfo: nil)
-                    contentRepository.errorToReturn = testError
+                    stub(contentRepository) { mock in
+                        when(mock.fetchJokeList()).then { _ in
+                            return Observable.error(testError)
+                        }
+                    }
 
                     viewModel.fetchJokeList()
 
+                    verify(contentRepository, times(1)).fetchJokeList()
                     expect(try? viewModel.jokeList.value()).to(beEmpty())
                     expect(viewModel.error.value as? NSError).to(equal(testError))
                 }
@@ -72,21 +89,9 @@ class JokeListViewModelSpec: QuickSpec {
                     let jokeID = 101
 
                     viewModel.showJokeDetail(jokeID: jokeID)
-
-                    expect(coordinator.showJokeDetailCalled).to(beTrue())
-                    expect(coordinator.showJokeDetailJokeID).to(equal(jokeID))
+                    verify(coordinator, times(1)).showJokeDetail(jokeID: equal(to: jokeID))
                 }
             }
         }
-    }
-}
-
-class MockJokeListCoordinator: JokeListCoordinator {
-    var showJokeDetailCalled = false
-    var showJokeDetailJokeID: Int?
-
-    override func showJokeDetail(jokeID: Int) {
-        showJokeDetailCalled = true
-        showJokeDetailJokeID = jokeID
     }
 }

@@ -3,33 +3,36 @@ import Quick
 import Nimble
 import Alamofire
 import RxSwift
+import Cuckoo
 @testable import simple_mvvmc_rx_api
 
 class DefaultNetworkClientSpec: QuickSpec {
     override class func spec() {
         describe("DefaultNetworkClient") {
             var sut: DefaultNetworkClient!
-            var mockInterceptor: Interceptor!
-            var mockSession: Session!
+            var networkClient: MockNetworkClient!
             
             beforeEach {
                 sut = DefaultNetworkClient()
-                
-                mockInterceptor = Interceptor { request, session, completion in
-                    completion(.success(request))
-                } retryHandler: { request, session, error, completion in
-                    completion(.retryWithDelay(1.0))
-                }
-                
-                mockSession = Session(interceptor: mockInterceptor)
+                networkClient = MockNetworkClient()
+            }
+            
+            afterEach {
+                sut = nil
+                networkClient = nil
             }
             
             context("when fetching with URL") {
                 it("should return the expected data with real URL") {
+                    let mockJokes = [
+                        Joke(id: 1, type: "type1", setup: "setup1", punchline: "punchline1"),
+                        Joke(id: 2, type: "type2", setup: "setup2", punchline: "punchline2"),
+                    ]
+                    stub(networkClient) { mock in
+                        when(mock.fetchData(from: any())).thenReturn(Observable.just(mockJokes))
+                    }
+                    
                     let url = "https://official-joke-api.appspot.com/jokes/ten"
-                    
-                    mockSession.request(url).response { _ in }
-                    
                     var fetchedData: [Joke]?
                     var fetchError: Error?
                     
@@ -46,8 +49,6 @@ class DefaultNetworkClientSpec: QuickSpec {
                 
                 it("should return an error with invalid url") {
                     let url = "https://invalid-url.com"
-                    
-                    mockSession.request(url).response { _ in }
                     
                     var fetchedData: [Joke]?
                     var fetchError: Error?

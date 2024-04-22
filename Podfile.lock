@@ -1,0 +1,18 @@
+PODS:
+  - Cuckoo (1.10.4):
+    - Cuckoo/Swift (= 1.10.4)
+  - Cuckoo/Swift (1.10.4)
+
+DEPENDENCIES:
+  - Cuckoo (= 1.10.4)
+
+SPEC REPOS:
+  trunk:
+    - Cuckoo
+
+SPEC CHECKSUMS:
+  Cuckoo: 20b8aed94022e0e43e90f7c9e4fb0c86f0926a01
+
+PODFILE CHECKSUM: 933e9210b035df2614b52c5785cff410b0c5ff8d
+
+COCOAPODS: 1.14.3

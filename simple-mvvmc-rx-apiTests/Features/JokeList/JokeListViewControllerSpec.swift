@@ -68,7 +68,6 @@ class JokeListViewControllerSpec: QuickSpec {
                     ]
                     mockViewModel.jokeList.onNext(mockJokes)
                     expect(sut.collectionView.numberOfItems(inSection: 0)).to(equal(mockJokes.count))
-
                     sut.view.layoutIfNeeded()
                     
                     sut.collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
